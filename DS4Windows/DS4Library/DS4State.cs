@@ -70,6 +70,9 @@ namespace DS4Windows
 
             public void RotateCoordinates(double rotation)
             {
+                if (rotation == 0) {
+                    return;
+                }
                 double sinAngle = Math.Sin(rotation), cosAngle = Math.Cos(rotation);
                 double tempX = X - 128.0, tempY = Y - 128.0;
                 X = (Byte)(Global.Clamp(-128.0, (tempX * cosAngle - tempY * sinAngle), 127.0) + 128.0);
@@ -210,16 +213,6 @@ namespace DS4Windows
         {
             L.CalculateAngles();
             R.CalculateAngles();
-        }
-
-        public void rotateLSCoordinates(double rotation)
-        {
-            L.RotateCoordinates(rotation);
-        }
-
-        public void rotateRSCoordinates(double rotation)
-        {
-            R.RotateCoordinates(rotation);
         }
     }
 }
